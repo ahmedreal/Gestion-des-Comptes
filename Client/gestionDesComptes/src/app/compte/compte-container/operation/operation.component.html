@@ -1,0 +1,29 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">Opérations sur le compte</div>
+  <div class="panel-body">
+    <form>
+      <div>
+        <label>Compte</label>
+        <input type="hidden" name="codeCompte"/>
+        <label></label>
+      </div>
+      <div>
+        <input #vers checked="checked" type="radio" name="typeOperation" value="VERS"/>
+        <label>Versement</label>
+        <input type="radio" name="typeOperation" value="RETR"/>
+        <label>Retrait</label>
+        <input type="radio" name="typeOperation" value="VIR"/>
+        <label>Virement</label> 
+      </div>
+      <div *ngIf='vers'>
+        <label>Vers :</label>
+        <input type="text" name="codeCompte2"/>
+      </div>
+      <div>
+        <label>Montant :</label>
+        <input type="text" name="montant"/>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</div>
