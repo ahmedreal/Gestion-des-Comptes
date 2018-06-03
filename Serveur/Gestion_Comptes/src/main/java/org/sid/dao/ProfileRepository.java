@@ -10,4 +10,5 @@ import org.springframework.data.jpa.repository.Query;
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
 	public Profile findByUsername(String username);
+	
 }

@@ -1,10 +1,12 @@
 package org.sid.dao;
 
+import java.util.List;
+
+import org.sid.entities.Client;
 import org.sid.entities.Compte;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 public interface CompteRepository extends JpaRepository<Compte, String>{
-	
+
+	public List<Compte> findByClient(Client client);
 }

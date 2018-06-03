@@ -1,17 +1,17 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" *ngIf="compte">
   <div class="panel-heading">Information sur le Compte</div>
   <div class="panel-body">
     <div>
       <label>Code :</label>
-      <label></label>
+      <label>{{compte.codeCompte}}</label>
     </div>
     <div>
       <label>Solde :</label>
-      <label></label>
+      <label>{{compte.solde}}</label>
     </div>
     <div>
       <label>Date Création :</label>
-      <label></label>
+      <label>{{compte.dateCreation}}</label>
     </div>
   </div>
 </div>

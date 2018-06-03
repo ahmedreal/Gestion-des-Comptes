@@ -23,8 +23,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE",discriminatorType=DiscriminatorType.STRING, length=1)
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public abstract class Profile implements Serializable{
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Profile implements Serializable{
 	
 	@Id @GeneratedValue
 	private Long code;
@@ -33,7 +33,7 @@ public abstract class Profile implements Serializable{
 	@Column(unique=true)
 	private String username;
 	private String password;
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+	//@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
 	private Date dateCreation;
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<AppRole> roles;
@@ -49,8 +49,20 @@ public abstract class Profile implements Serializable{
 		this.roles = roles;
 	}
 	
-	public Profile() {
+	public Profile(String username, String password, Collection<AppRole> roles) {
 		super();
+		this.username = username;
+		this.password = password;
+		this.roles = roles;
+	}
+	
+	public Profile(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+	
+	public Profile() {
 	}
 	public Long getCode() {
 		return code;

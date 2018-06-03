@@ -1,8 +1,24 @@
-<div>
+
+<div class="col-md-ofsset-1 col-md-5">
   <div class="panel panel-primary">
     <div class="panel-heading">Liste des comptes</div>
     <div class="panel-body">
-
+      <div *ngIf="!isAdmin">
+        <a *ngFor="let compte of comptes" class="list-group-item list-group-action" [routerLink]=[compte.codeCompte]
+        routerLinkActive="active">
+          {{compte.codeCompte}}
+        </a>
+      </div>
+      <div *ngIf="isAdmin">
+        <form [formGroup]="getCompteForm" (ngSubmit)="chercherCompte()">
+          <div class="form-group">
+            <label class="form-label">Code :</label>
+            <input class="form-control" type="text" formControlName="code" placeholder="Saisir le code" />
+          </div>
+          <button class="btn btn-danger" type="submit">Chercher</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>

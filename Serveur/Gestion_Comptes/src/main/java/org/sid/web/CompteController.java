@@ -1,11 +1,14 @@
 package org.sid.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.json.JSONObject;
 import org.json.JSONString;
+import org.sid.dao.ClientRepository;
 import org.sid.dao.CompteRepository;
 import org.sid.dao.OperationRepository;
+import org.sid.entities.Client;
 import org.sid.entities.Compte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class CompteController {
 	@Autowired
 	CompteRepository compteRepository;
+	@Autowired
+	ClientRepository clientRepository;
 	
 	@GetMapping("/")
 	public List<Compte> getComptes() {
 		return compteRepository.findAll();
+	}
+	
+	@GetMapping("/clientComptes/{username}")
+	public List<Compte> getClientComptes(@PathVariable("username") String username) {
+		Client client = clientRepository.findByUsername(username);
+		return compteRepository.findByClient(client);
 	}
 		
 	@GetMapping("/{codeCpt}")

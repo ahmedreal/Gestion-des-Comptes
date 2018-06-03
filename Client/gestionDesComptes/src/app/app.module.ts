@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -20,6 +21,11 @@ import { ClientListComponent } from './client/client-container/client-list/clien
 import { ClientDetailComponent } from './client/client-container/client-detail/client-detail.component';
 import { EditProfilComponent } from './profil/edit-profil/edit-profil.component';
 import { NewClientComponent } from './client/client-container/new-client/new-client.component';
+import { OperationService } from './share/service/operation.service';
+import { AuthentifficationService } from './share/service/authentiffication.service';
+import { AuthInterceptor } from './share/Intercepteurs/auth.interceptor';
+import { ProfilService } from './share/service/profil.service';
+import { TypeOperationPipe } from './compte/type-operation.pipe';
 
 
 @NgModule({
@@ -38,14 +44,25 @@ import { NewClientComponent } from './client/client-container/new-client/new-cli
     ClientListComponent,
     ClientDetailComponent,
     EditProfilComponent,
-    NewClientComponent
+    NewClientComponent,
+    TypeOperationPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi : true
+    },
+    OperationService,
+     AuthentifficationService,
+     ProfilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,29 +1,32 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Opérations sur le compte</div>
   <div class="panel-body">
-    <form>
-      <div>
-        <label>Compte</label>
-        <input type="hidden" name="codeCompte"/>
-        <label></label>
+    <form [formGroup]="opForm" (ngSubmit)="sendOp()">
+      <div hidden="true">
+        <label class="form-label">Compte</label>
+        <input formControlName="code" type="text"  class="form-control"/>
       </div>
       <div>
-        <input #vers checked="checked" type="radio" name="typeOperation" value="VERS"/>
-        <label>Versement</label>
-        <input type="radio" name="typeOperation" value="RETR"/>
-        <label>Retrait</label>
-        <input type="radio" name="typeOperation" value="VIR"/>
-        <label>Virement</label> 
+        <input #ver formControlName="operation" checked="checked" type="radio" value="VERS" (click)="afficheVers(ver)" />
+        <label >Versement</label>
+        <input #ret formControlName="operation" type="radio"  value="RETR" (click)="afficheVers(ret)"/>
+        <label >Retrait</label>
+        <input #vir formControlName="operation" type="radio" value="VIR" (click)="afficheVers(vir)"/>
+        <label >Virement</label> 
       </div>
-      <div *ngIf='vers'>
-        <label>Vers :</label>
-        <input type="text" name="codeCompte2"/>
+      <div *ngIf='isVir'>
+        <label class="form-label">Vers :</label>
+        <input formControlName="compteDist" type="text" class="form-control" />
       </div>
       <div>
-        <label>Montant :</label>
-        <input type="text" name="montant"/>
+        <label class="form-label">Montant :</label>
+        <input formControlName="montant" type="text" class="form-control" />
       </div>
+      <br>
       <button type="submit" class="btn btn-primary">Save</button>
+      <div *ngIf='erreur' class="alert alert-danger">
+          <strong>{{erreur}}</strong>
+      </div>
     </form>
   </div>
 </div>

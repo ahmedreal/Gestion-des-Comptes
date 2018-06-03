@@ -3,7 +3,7 @@ package org.sid.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -56,7 +56,6 @@ public class Compte implements Serializable{
 		this.codeCompte = codeCompte;
 	}
 
-	//@JsonIgnore
 	public Date getDateCreation() {
 		return dateCreation;
 	}
@@ -80,7 +79,7 @@ public class Compte implements Serializable{
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	//@JsonIgnore
+	@JsonIgnore
 	public Collection<Operation> getOperations() {
 		return operations;
 	}

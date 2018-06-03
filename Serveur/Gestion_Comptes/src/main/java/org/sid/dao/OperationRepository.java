@@ -10,6 +10,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface OperationRepository extends JpaRepository<Operation, Long>{
 
-	//@Query("select operation from Operation where compte = :compte")
 	public List<Operation> findByCompte(Compte compte);
 }

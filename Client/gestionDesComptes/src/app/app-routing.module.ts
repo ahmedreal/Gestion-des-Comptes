@@ -6,16 +6,19 @@ import { ProfilComponent } from "./profil/profil.component";
 import { LoginComponent } from "./login/login.component";
 import { EditProfilComponent } from "./profil/edit-profil/edit-profil.component";
 import { NewClientComponent } from "./client/client-container/new-client/new-client.component";
+import { CompteListComponent } from "./compte/compte-container/compte-list/compte-list.component";
 
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full'},
     { path: 'client', component: ClientContainerComponent},
     { path: 'client/new', component: NewClientComponent},
-    { path: 'compte', component: CompteContainerComponent},
+    { path: 'compte', component: CompteListComponent, children:[
+      {path: ':codeCompte', component: CompteContainerComponent}
+    ]},
     { path: 'profil', component: ProfilComponent},
     { path:'profil/edit', component: EditProfilComponent},
-    { path: 'login', component: LoginComponent}
+    { path: 'login', component: LoginComponent},
+    { path: '', redirectTo: '/login', pathMatch: 'full'},
   ];
 
   @NgModule({
