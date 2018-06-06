@@ -21,7 +21,10 @@ export class CompteListComponent implements OnInit {
   public username:string;
   public isAdmin:boolean;
   public comptes:Compte[];
-  public getCompteForm: FormGroup;
+  public getCompteForm:FormGroup;
+  public listCodeComptes:string[];
+  public erreur:string;
+
   constructor(private opService: OperationService, private router:Router, private auth:AuthentifficationService, private fb:FormBuilder) { 
     this.auth.jwtToken.subscribe(res =>{
       this.isAdmin = res.isAdmin;
@@ -38,6 +41,10 @@ export class CompteListComponent implements OnInit {
     this.getCompteForm = this.fb.group({
       code:['',Validators.required]
     });
+
+    this.erreur = null;
+    this.opService.getListCodeComptes();
+    this.opService.listcodeComptes.subscribe(listCodeComptes => this.listCodeComptes = listCodeComptes);
   }
 
   getClientComptes(){
@@ -46,9 +53,16 @@ export class CompteListComponent implements OnInit {
   }
 
   chercherCompte(){
-    this.opService.getCompte(this.getCompteForm.value.code).subscribe(compte => {
-      this.router.navigate(['/compte',compte.codeCompte]);
-    });
+    let compteValid = this.listCodeComptes.includes(this.getCompteForm.get('code').value);
+    if(this.getCompteForm.valid && compteValid){
+      this.erreur = null;
+      this.opService.getCompte(this.getCompteForm.value.code).subscribe(compte => {
+        this.router.navigate(['/compte',compte.codeCompte]);
+      });
+    }else{
+      this.erreur = 'Compte Invalid!';
+    }
+   
   }
 
 

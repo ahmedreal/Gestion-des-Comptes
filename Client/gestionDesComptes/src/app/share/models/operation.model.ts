@@ -6,6 +6,7 @@ export class Operation {
         public numero: number,
         public dateOperation:Date,
         public montant: number,
+        public details:string,
         public compte: Compte 
     ){}
 

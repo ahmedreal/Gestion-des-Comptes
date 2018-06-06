@@ -1,8 +1,31 @@
-<div class="panel panel-primary">
-  <div class="panel-heading">Liste des clients</div>
-  <div class="panel-body">
-    
-    <hr>
-    <button routerLink = "./new" class="btn btn-danger">Ajouter nouveau client</button> 
-  </div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Liste des clients</div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <tr>
+              <th>Code</th>
+              <th>Nom</th>
+              <th>Username</th>            
+            </tr>
+              <tr *ngFor="let client of clients"  (click)='getClientDetails(client)' routerLinkActivate='active'>
+                <td>{{client.code}}</td>
+                <td>{{client.nom}}</td>
+                <td>{{client.username}}</td>            
+              </tr>
+          </table>
+        </div>
+      </div> 
+      <div class="panel panel-primary"> 
+        <div class="panel-heading">Ajout d'un nouveau profil</div>
+        <div class="panel-body">
+            <button (click)='createAdmin()' class="btn btn-danger">Nouveau Admin</button>
+          <button (click)='createClient()' class="btn btn-danger">Nouveau client</button> 
+      </div>
+    </div> 
+  </div>  
+  <div class="col-md-5">
+    <app-client-detail></app-client-detail>
+  </div>  
 </div>

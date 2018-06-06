@@ -10,7 +10,7 @@
       </tr>
         <tr *ngFor="let operation of operations" >
           <td>{{operation.numero}}</td>
-          <td>{{operation.discriminatorValue | typeOperation}}</td>
+          <td>{{operation.discriminatorValue | typeOperation}} {{operation.details}}</td>
           <td>{{operation.dateOperation}}</td>
           <td>{{operation.montant}}</td>            
         </tr>

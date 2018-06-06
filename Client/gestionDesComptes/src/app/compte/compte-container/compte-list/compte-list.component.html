@@ -1,5 +1,5 @@
 
-<div class="col-md-ofsset-1 col-md-5">
+<div class="col-md-5">
   <div class="panel panel-primary">
     <div class="panel-heading">Liste des comptes</div>
     <div class="panel-body">
@@ -12,10 +12,16 @@
       <div *ngIf="isAdmin">
         <form [formGroup]="getCompteForm" (ngSubmit)="chercherCompte()">
           <div class="form-group">
-            <label class="form-label">Code :</label>
-            <input class="form-control" type="text" formControlName="code" placeholder="Saisir le code" />
+            <label class="form-label">Trouver un Compte :</label>
+            <input list="listComptes" class="form-control" type="text" formControlName="code" placeholder="Saisir le code Compte" />
+            <datalist id="listComptes">
+              <option *ngFor="let codeCompte of listCodeComptes">{{codeCompte}}</option>
+            </datalist>
           </div>
           <button class="btn btn-danger" type="submit">Chercher</button>
+          <div *ngIf='erreur' class="alert alert-danger">
+              <strong>{{erreur}}</strong>
+          </div>
         </form>
       </div>
     </div>

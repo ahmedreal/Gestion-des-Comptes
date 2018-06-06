@@ -17,8 +17,8 @@ public class VirementEmis extends Operation{
 		// TODO Auto-generated constructor stub
 	}
 
-	public VirementEmis(Date dateOperation, double montant, Compte compte, String codeCompteTiers) {
-		super(dateOperation, montant, compte);
+	public VirementEmis(Date dateOperation, double montant, String details, Compte compte, String codeCompteTiers) {
+		super(dateOperation, montant, details, compte);
 		this.codeCompteTiers = codeCompteTiers;
 	}
 

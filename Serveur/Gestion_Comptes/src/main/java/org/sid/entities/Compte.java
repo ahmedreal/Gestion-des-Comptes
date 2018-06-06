@@ -27,7 +27,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 public class Compte implements Serializable{
 	@Id
 	private String codeCompte;
-	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+	//@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateCreation;
 	private double solde;
 	@ManyToOne

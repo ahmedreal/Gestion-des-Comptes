@@ -56,21 +56,21 @@ public class GestionComptesApplication implements CommandLineRunner{
 		// test partie DAO : creation d'un client, un compte et une opération
 		Date date = new Date();
 		
-		Client cli1 = (Client) accountService.saveProfil(new Client("Ahmed","ahmed@ahmed.com","Ahmedreal", "1234",date,null));
-		Client cli2 = (Client)accountService.saveProfil(new Client("Oumayma","oumayma@oumayma.com","Oumy", "1234",date,null));
-		accountService.saveProfil(new Client("Ahmed","ahmed@ahmed.com","Ahmed_adm", "1234",date,null));
+		Client cli1 = (Client) accountService.saveProfil(new Client("Ahmed","ahmed@ahmed.com","Client1", "1234",date,null));
+		Client cli2 = (Client)accountService.saveProfil(new Client("Oumayma","oumayma@oumayma.com","Client2", "1234",date,null));
+		accountService.saveProfil(new Admin("Ahmed","ahmed@ahmed.com","Admin1", "1234",date,null));
 		accountService.saveRole(new AppRole("ADMIN"));
 		accountService.saveRole(new AppRole("USER"));
-		accountService.addRoleToProfil("Ahmedreal","USER");
-		accountService.addRoleToProfil("Oumy","USER");
-		accountService.addRoleToProfil("Ahmed_adm","ADMIN");
+		accountService.addRoleToProfil("Client1","USER");
+		accountService.addRoleToProfil("Client2","USER");
+		accountService.addRoleToProfil("Admin1","ADMIN");
 		
-		Compte cpt1 = compteRepository.save(new Compte("Cpt_Ahmed_1", date , 90000, cli1));
-		Compte cpt2 = compteRepository.save(new Compte("Cpt_Ahmed_2", date , 90000, cli1));
-		Compte cpt3 = compteRepository.save(new Compte("Cpt_Oumayma_1", date , 90000, cli2));
+		Compte cpt1 = compteRepository.save(new Compte("Cpt1_client_1", date , 90000, cli1));
+		Compte cpt2 = compteRepository.save(new Compte("Cpt2_client_1", date , 90000, cli1));
+		Compte cpt3 = compteRepository.save(new Compte("Cpt1_client_2", date , 90000, cli2));
 		//Compte cpt3 = compteRepository.save(new Compte("Cpt_Ahmed_3", null , 90000, null));
-		operationRepository.save(new Versement(date,500,cpt1));
-		operationRepository.save(new Retrait(date,1000,cpt2));
+		operationRepository.save(new Versement(date,500,null,cpt1));
+		operationRepository.save(new Retrait(date,1000,null,cpt2));
 			
 	}
 }

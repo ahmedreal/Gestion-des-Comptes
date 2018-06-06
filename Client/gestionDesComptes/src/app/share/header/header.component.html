@@ -3,7 +3,7 @@
     <a class="navbar-brand" routerLink='/compte'>Banque</a>
     <ul class="nav navbar-nav mr-auto">
       <li>
-        <a routerLinkActive="active" routerLink="/client" *ngIf='isAuthenticated'>Clients</a>
+        <a routerLinkActive="active" routerLink='/client' *ngIf='isAuthenticated && isAdmin'>Clients</a>
       </li>
       <li>
         <a  routerLinkActive="active" routerLink='/compte' *ngIf='isAuthenticated'>Comptes</a>

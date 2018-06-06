@@ -78,8 +78,8 @@ public class OperationController {
 		double soldeCompteOrig = compteDebiter.getSolde() - virement.getMontant();
 		compteCrediter.setSolde(soldeCompteDist);
 		compteDebiter.setSolde(soldeCompteOrig);
-		VirementRecu vr = new VirementRecu(virement.getDateOperation(), virement.getMontant(), compteCrediter, compteDebiter.getCodeCompte());
-		VirementEmis ve = new VirementEmis(virement.getDateOperation(), virement.getMontant(), compteDebiter, compteCrediter.getCodeCompte());
+		VirementRecu vr = new VirementRecu(virement.getDateOperation(), virement.getMontant(), "De : "+compteDebiter.getCodeCompte(), compteCrediter, compteDebiter.getCodeCompte());
+		VirementEmis ve = new VirementEmis(virement.getDateOperation(), virement.getMontant(), "Vers : "+compteCrediter.getCodeCompte(),compteDebiter, compteCrediter.getCodeCompte());
 		operationRepository.save(vr);
 		operationRepository.save(ve);
 		compteRepository.save(compteCrediter);

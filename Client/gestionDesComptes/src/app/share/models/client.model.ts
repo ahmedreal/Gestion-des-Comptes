@@ -1,3 +1,4 @@
+import { Compte } from "./compte.model";
 
 export class Client {
     constructor(
@@ -6,7 +7,8 @@ export class Client {
         public email: string,
         public username: string,
         public password: string,
-        public dateCreation: Date
+        public dateCreation: Date,
+        public comptes: Compte[]
     ) {
         
     }

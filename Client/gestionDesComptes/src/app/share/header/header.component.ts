@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public username : string;
   public isAuthenticated: boolean;
+  public isAdmin: boolean;
   public subscription: Subscription;
   constructor(private auth:AuthentifficationService) { }
 
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
    this.subscription =  this.auth.jwtToken.subscribe( (jt:JwtToken) => {
       this.username = jt.username;
       this.isAuthenticated = jt.isAuthenticated;
+      this.isAdmin = jt.isAdmin;
     });
   }
 

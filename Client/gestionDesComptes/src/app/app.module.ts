@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './share/header/header.component';
 import { FooterComponent } from './share/footer/footer.component';
 import { CompteContainerComponent } from './compte/compte-container/compte-container.component';
-import { ClientContainerComponent } from './client/client-container/client-container.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -17,15 +16,18 @@ import { CompteListComponent } from './compte/compte-container/compte-list/compt
 import { CompteDetailComponent } from './compte/compte-container/compte-detail/compte-detail.component';
 import { OperationListComponent } from './compte/compte-container/operation-list/operation-list.component';
 import { OperationComponent } from './compte/compte-container/operation/operation.component';
-import { ClientListComponent } from './client/client-container/client-list/client-list.component';
-import { ClientDetailComponent } from './client/client-container/client-detail/client-detail.component';
 import { EditProfilComponent } from './profil/edit-profil/edit-profil.component';
-import { NewClientComponent } from './client/client-container/new-client/new-client.component';
 import { OperationService } from './share/service/operation.service';
 import { AuthentifficationService } from './share/service/authentiffication.service';
 import { AuthInterceptor } from './share/Intercepteurs/auth.interceptor';
 import { ProfilService } from './share/service/profil.service';
 import { TypeOperationPipe } from './compte/type-operation.pipe';
+import { FilterSearchPipe } from './compte/pipe/filter-search.pipe';
+import { AuthGuard } from './share/gards/auth.guard';
+import { AdminGuard } from './share/gards/admin.guard';
+import { FilterCodeCourantPipe } from './compte/pipe/filter-codeCourant.pipe';
+import { SharedService } from './share/service/shared.service';
+
 
 
 @NgModule({
@@ -34,18 +36,16 @@ import { TypeOperationPipe } from './compte/type-operation.pipe';
     HeaderComponent,
     FooterComponent,
     CompteContainerComponent,
-    ClientContainerComponent,
     LoginComponent,
     ProfilComponent,
     CompteListComponent,
     CompteDetailComponent,
     OperationListComponent,
     OperationComponent,
-    ClientListComponent,
-    ClientDetailComponent,
     EditProfilComponent,
-    NewClientComponent,
-    TypeOperationPipe
+    TypeOperationPipe,
+    FilterSearchPipe,
+    FilterCodeCourantPipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +62,11 @@ import { TypeOperationPipe } from './compte/type-operation.pipe';
     },
     OperationService,
      AuthentifficationService,
-     ProfilService],
+     ProfilService,
+     AuthGuard,
+     AdminGuard,
+     SharedService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,8 @@
 <div class="container">
     <div class="col-md-6 col-md-offset-3">
+      <div *ngIf="message" class="alert alert-success">
+        <strong>{{message}}</strong>
+      </div> 
       <div class="panel panel-primary">
         <div class="panel-heading">Information sur le profil</div>
         <div class="panel-body">
@@ -24,7 +27,7 @@
             <label>{{profil.dateCreation}}</label>
           </div>
           <hr>
-          <button routerLink = "./edit" class="btn btn-danger">Editer</button> 
+          <button [routerLink] = "getUrl()" class="btn btn-danger">Editer</button> 
         </div>
       </div>
     </div>

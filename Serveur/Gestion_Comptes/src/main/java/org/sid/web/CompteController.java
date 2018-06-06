@@ -32,6 +32,11 @@ public class CompteController {
 		return compteRepository.findAll();
 	}
 	
+	@GetMapping("/listcodeComptes")
+	public List<String> getCodeComptes() {
+		return compteRepository.getAllcodeComptes();
+	}			
+	
 	@GetMapping("/clientComptes/{username}")
 	public List<Compte> getClientComptes(@PathVariable("username") String username) {
 		Client client = clientRepository.findByUsername(username);
@@ -44,7 +49,9 @@ public class CompteController {
 	} 
 	
 	@PostMapping(path="/create")
-	public Compte createCompte( @RequestBody Compte compte) {
+	public Compte createCompte( @RequestBody Client client) {
+		Compte cpt = ((List<Compte>) client.getComptes()).get(0); 
+		Compte compte = new Compte(cpt.getCodeCompte(),cpt.getDateCreation(),cpt.getSolde(),client);
 		return compteRepository.save(compte);
 	}
 	

@@ -9,14 +9,16 @@ import { Compte } from '../../../share/models/compte.model';
 })
 export class CompteDetailComponent implements OnInit, OnChanges {
 
-  @Input() codeCompte:string;
+  @Input() listCodeComptes:string[];
   public compte:Compte;
   constructor(private opService:OperationService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.opService.compte.subscribe((compte:Compte)=> this.compte = compte);
+  }
 
   ngOnChanges(){
-    this.opService.compte.subscribe((compte:Compte)=> this.compte = compte);
+
   }
 
 }

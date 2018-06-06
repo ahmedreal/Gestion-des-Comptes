@@ -3,6 +3,7 @@ import { Profil } from '../share/models/profil.model';
 import { AuthentifficationService } from '../share/service/authentiffication.service';
 import { ProfilService } from '../share/service/profil.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -12,13 +13,29 @@ import { Subscription } from 'rxjs';
 export class ProfilComponent implements OnInit, OnDestroy {
 
   public profil: Profil; 
-  public sub: Subscription
-  constructor(private auth: AuthentifficationService, private profilService:ProfilService) { }
+  public sub: Subscription;
+  public isEdit:string;
+  public message:string;
+
+  constructor(private auth: AuthentifficationService, private profilService:ProfilService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.auth.profil.subscribe(res =>{
       this.profil = res;
     });
+    this.activatedRoute.queryParamMap.subscribe(params => { 
+      this.isEdit = params.get('isEdit')
+      if(this.isEdit==='true'){
+        this.message = "Profil edité";
+        setTimeout(() => {
+          this.message = null;
+        }, 3000);
+      }
+    });
+   }
+
+   getUrl(){
+     return ['./edit',this.profil];
    }
 
   ngOnDestroy(){

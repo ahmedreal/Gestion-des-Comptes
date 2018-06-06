@@ -21,9 +21,8 @@ public class VirementRecu extends Operation{
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public VirementRecu(Date dateOperation, double montant, Compte compte, String codeCompteTiers) {
-		super(dateOperation, montant, compte);
+	public VirementRecu(Date dateOperation, double montant, String details, Compte compte, String codeCompteTiers) {
+		super(dateOperation, montant, details, compte);
 		this.codeCompteTiers = codeCompteTiers;
 	}
 
@@ -31,6 +30,5 @@ public class VirementRecu extends Operation{
 	public void setCodeCompteTiers(String codeCompteTiers) {
 		this.codeCompteTiers = codeCompteTiers;
 	}
-	
 
 }

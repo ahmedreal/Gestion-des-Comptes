@@ -14,16 +14,18 @@
         <input #vir formControlName="operation" type="radio" value="VIR" (click)="afficheVers(vir)"/>
         <label >Virement</label> 
       </div>
-      <div *ngIf='isVir'>
-        <label class="form-label">Vers :</label>
-        <input formControlName="compteDist" type="text" class="form-control" />
+      <div *ngIf='isVir' class="col-3">
+        <input list="listComptes" type='text' class='form-control' placeholder="chercher un compte ..." formControlName="compteDist">
+          <datalist id="listComptes">
+            <option *ngFor="let codeCompte of listCodeComptes | filterCodeCourant:opForm.get('code').value | filterSearch:opForm.get('compteDist').value">{{codeCompte}}</option>
+          </datalist>
       </div>
       <div>
         <label class="form-label">Montant :</label>
         <input formControlName="montant" type="text" class="form-control" />
       </div>
       <br>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Enregistrer</button>
       <div *ngIf='erreur' class="alert alert-danger">
           <strong>{{erreur}}</strong>
       </div>

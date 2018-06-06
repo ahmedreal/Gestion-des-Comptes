@@ -1,25 +1,25 @@
-<div class="panel panel-primary">
+<div *ngIf='client' class="panel panel-primary">
   <div class="panel-heading">Information sur le client</div>
   <div class="panel-body">
     <div>
         <label>Code :</label>
-        <label></label>
+        <label>{{client.code}}</label>
       </div>
       <div>
         <label>Nom :</label>
-        <label></label>
+        <label>{{client.nom}}</label>
       </div>
       <div>
         <label>Username :</label>
-        <label></label>
+        <label>{{client.username}}</label>
       </div>   
       <div>
         <label>Email :</label>
-        <label></label>
+        <label>{{client.email}}</label>
       </div>                      
       <div>
         <label>Date Création :</label>
-        <label></label>
+        <label>{{client.dateCreation}}</label>
       </div>
       <br>
       <div>
@@ -30,14 +30,20 @@
               <th>Solde</th>
               <th>Date de création</th>          
             </tr>
-            <tr>
-              <td>Code</td>
-              <td>Solde</td>
-              <td>Date</td>       
+            <tr *ngFor="let compte of client.comptes" (click)="detailsCompte(compte)">
+              <td>{{compte.codeCompte}}</td>
+              <td>{{compte.solde}}</td>
+              <td>{{compte.dateCreation}}</td>       
             </tr>
           </table>
       </div>
       <hr>
-      <button class="btn btn-danger">Ajouter un compte</button> 
+      <div class="panel-body">
+          <input type='text' [(ngModel)]='newCompte'>
+          <button (click)='ajouterCompte()' class="btn btn-danger">Ajouter un compte</button> 
+      </div>
+      <div *ngIf="erreur" class="alert alert-danger">
+          <strong>{{erreur}}</strong>
+      </div>
   </div>
 </div>

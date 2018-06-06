@@ -34,6 +34,7 @@ public class Profile implements Serializable{
 	private String username;
 	private String password;
 	//@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateCreation;
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Collection<AppRole> roles;

@@ -31,6 +31,7 @@ public abstract class Operation implements Serializable{
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date dateOperation;
 	private double montant;
+	private String details;
 	@ManyToOne
 	@JoinColumn(name="CODE_COMPTE")
 	private Compte compte;
@@ -47,12 +48,16 @@ public abstract class Operation implements Serializable{
 	    }
 	}
 	
-	public Operation(Date dateOperation, double montant, Compte compte) {
+	
+	public Operation(Date dateOperation, double montant, String details, Compte compte) {
 		super();
 		this.dateOperation = dateOperation;
 		this.montant = montant;
+		this.details = details;
 		this.compte = compte;
 	}
+
+
 	public Operation() {
 		super();
 	}
@@ -82,6 +87,14 @@ public abstract class Operation implements Serializable{
 	}
 	public void setCompte(Compte compte) {
 		this.compte = compte;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
 	}
 	
 	
