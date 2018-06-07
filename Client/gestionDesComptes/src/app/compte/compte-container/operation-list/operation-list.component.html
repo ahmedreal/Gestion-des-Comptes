@@ -1,15 +1,13 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Liste des opérations</div>
-  <div class="panel-body">
+  <div class="panel-body autoScroll" style="height:200pt">
     <table class="table table-striped">
       <tr>
-        <th>Num</th>
-        <th>Type</th>
+        <th>Type Opération</th>
         <th>Date</th>
         <th>Montant</th>            
       </tr>
         <tr *ngFor="let operation of operations" >
-          <td>{{operation.numero}}</td>
           <td>{{operation.discriminatorValue | typeOperation}} {{operation.details}}</td>
           <td>{{operation.dateOperation}}</td>
           <td>{{operation.montant}}</td>            

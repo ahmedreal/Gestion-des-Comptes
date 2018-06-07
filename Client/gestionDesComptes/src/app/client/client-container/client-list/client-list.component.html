@@ -3,18 +3,24 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Liste des clients</div>
         <div class="panel-body">
-          <table class="table table-striped">
+          <div class="form-group">
+            <input type="text" placeholder="Chercher un client" [(ngModel)]="searchClient"/>
+          </div>
+        </div>
+        <div class="panel-body autoScroll" style="height:230pt" >
+          <table class="table table-striped" >
             <tr>
               <th>Code</th>
               <th>Nom</th>
               <th>Username</th>            
             </tr>
-              <tr *ngFor="let client of clients"  (click)='getClientDetails(client)' routerLinkActivate='active'>
+              <tr *ngFor="let client of clients | filterClient:searchClient | paginate:{itemsPerPage:5, currentPage:p}"  (click)='getClientDetails(client)' routerLinkActivate='active'>
                 <td>{{client.code}}</td>
                 <td>{{client.nom}}</td>
                 <td>{{client.username}}</td>            
               </tr>
           </table>
+          <pagination-controls class="page-item" (pageChange)="p=$event"></pagination-controls>
         </div>
       </div> 
       <div class="panel panel-primary"> 

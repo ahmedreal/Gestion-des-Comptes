@@ -3,6 +3,8 @@ import { ClientService } from '../../services/client.service';
 import { Client } from '../../../share/models/client.model';
 import { Router } from '@angular/router';
 import { Compte } from '../../../share/models/compte.model';
+import { FilterSearchPipe } from '../../../compte/pipe/filter-search.pipe';
+
 
 @Component({
   selector: 'app-client-list',
@@ -13,6 +15,7 @@ export class ClientListComponent implements OnInit {
 
   public clients:Client[];
   public client:Client;
+  public searchClient:string= '';
  
   constructor(private clientService:ClientService, private router:Router) { }
 

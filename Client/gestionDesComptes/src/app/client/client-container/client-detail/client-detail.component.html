@@ -22,7 +22,7 @@
         <label>{{client.dateCreation}}</label>
       </div>
       <br>
-      <div>
+      <div class="autoScroll" style="height:200pt">
         <label>Comptes :</label>
         <table class="table table-striped">
             <tr>
@@ -30,16 +30,16 @@
               <th>Solde</th>
               <th>Date de création</th>          
             </tr>
-            <tr *ngFor="let compte of client.comptes" (click)="detailsCompte(compte)">
+            <tr *ngFor="let compte of client.comptes | paginate:{itemsPerPage:4, currentPage:p}" (click)="detailsCompte(compte)">
               <td>{{compte.codeCompte}}</td>
               <td>{{compte.solde}}</td>
               <td>{{compte.dateCreation}}</td>       
             </tr>
           </table>
+          <pagination-controls class="page-item" (pageChange)="p=$event"></pagination-controls>
       </div>
-      <hr>
       <div class="panel-body">
-          <input type='text' [(ngModel)]='newCompte'>
+          <input type='text' placeholder="Nouveau code compte" [(ngModel)]='newCompte'>
           <button (click)='ajouterCompte()' class="btn btn-danger">Ajouter un compte</button> 
       </div>
       <div *ngIf="erreur" class="alert alert-danger">

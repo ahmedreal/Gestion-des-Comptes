@@ -8,6 +8,9 @@ import { ClientRoutingModule } from './client-routing.module';
 import { ClientService } from './services/client.service';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FilterSearchPipe } from '../compte/pipe/filter-search.pipe';
+import { FilterClientPipe } from './pipe/filter.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
@@ -15,14 +18,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ClientRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
-    
+    FormsModule,
+    NgxPaginationModule
   ],
   declarations: [
     ClientListComponent,
     ClientContainerComponent,
     ClientDetailComponent,
-    NewClientComponent
+    NewClientComponent,
+    FilterClientPipe
   ],
   providers:[ClientService],
   exports:[ClientContainerComponent]
