@@ -14,13 +14,13 @@
               <th>Nom</th>
               <th>Username</th>            
             </tr>
-              <tr *ngFor="let client of clients | filterClient:searchClient | paginate:{itemsPerPage:5, currentPage:p}"  (click)='getClientDetails(client)' routerLinkActivate='active'>
+              <tr *ngFor="let client of clients | filterClient:searchClient | paginate:{itemsPerPage:5, currentPage:page, id:'client-list'}"  (click)='getClientDetails(client)' routerLinkActivate='active'>
                 <td>{{client.code}}</td>
                 <td>{{client.nom}}</td>
                 <td>{{client.username}}</td>            
               </tr>
           </table>
-          <pagination-controls class="page-item" (pageChange)="p=$event"></pagination-controls>
+          <pagination-controls id="client-list" *ngIf="clients && clients.length > 5" class="page-item" (pageChange)="page=$event"></pagination-controls>
         </div>
       </div> 
       <div class="panel panel-primary"> 

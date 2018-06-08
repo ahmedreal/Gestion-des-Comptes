@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators/tap';
-import { JwtToken } from '../models/JwtToken.model';
+
 import { JwtHelper } from 'angular2-jwt';
 import { Router } from '@angular/router';
-import { Profil } from '../models/profil.model';
-import { ProfilService } from './profil.service';
+import { JwtToken } from '../share/models/JwtToken.model';
+import { Profil } from '../share/models/profil.model';
 
 @Injectable()
 export class AuthentifficationService {
@@ -31,7 +31,7 @@ export class AuthentifficationService {
     discriminatorValue: null
   })
 
-  constructor(private http: HttpClient, private router: Router, private profileService:ProfilService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(user){
     //on a ajouté l'option observe: response car on veut pas que spring boot convertie la reponse en format json

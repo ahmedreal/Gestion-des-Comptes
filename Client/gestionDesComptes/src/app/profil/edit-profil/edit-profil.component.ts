@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Profil } from '../../share/models/profil.model';
-import { ProfilService } from '../../share/service/profil.service';
 import { Router } from '@angular/router';
 import { SharedService } from '../../share/service/shared.service';
-import { AuthentifficationService } from '../../share/service/authentiffication.service';
+import { ProfilService } from '../profil.service';
+import { AuthentifficationService } from '../../login/authentiffication.service';
 
 @Component({
   selector: 'app-edit-profil',

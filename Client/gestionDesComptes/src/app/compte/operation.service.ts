@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Compte } from '../models/compte.model';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Operation } from '../models/operation.model';
 import { Router } from '@angular/router';
+import { Compte } from '../share/models/compte.model';
+import { Operation } from '../share/models/operation.model';
 
 @Injectable()
 export class OperationService {

@@ -1,11 +1,9 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { ProfilService } from '../../share/service/profil.service';
+import { Component, OnInit } from '@angular/core';
 import { Profil } from '../../share/models/profil.model';
 import { Compte } from '../../share/models/compte.model';
-import { AuthentifficationService } from '../../share/service/authentiffication.service';
-import { OperationService } from '../../share/service/operation.service';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, Params, ParamMap } from '@angular/router';
+import { OperationService } from '../operation.service';
 
 @Component({
   selector: 'app-compte-container',

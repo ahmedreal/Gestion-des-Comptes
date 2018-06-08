@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { OperationService } from '../../../share/service/operation.service';
 import { Client } from '../../../share/models/client.model';
 import { Compte } from '../../../share/models/compte.model';
-import { AuthentifficationService } from '../../../share/service/authentiffication.service';
 import { JwtToken } from '../../../share/models/JwtToken.model';
-import { ProfilService } from '../../../share/service/profil.service';
 import { Profil } from '../../../share/models/profil.model';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthentifficationService } from '../../../login/authentiffication.service';
+import { OperationService } from '../../operation.service';
+import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 
 @Component({
   selector: 'app-compte-list',
@@ -24,9 +24,10 @@ export class CompteListComponent implements OnInit {
   public getCompteForm:FormGroup;
   public listCodeComptes:string[];
   public erreur:string;
+  public p:Page;
 
   constructor(private opService: OperationService, private router:Router, private auth:AuthentifficationService, private fb:FormBuilder) { 
-    this.auth.jwtToken.subscribe(res =>{
+    this.auth.jwtToken.subscribe((res:JwtToken) =>{
       this.isAdmin = res.isAdmin;
       this.username = res.username;
     });

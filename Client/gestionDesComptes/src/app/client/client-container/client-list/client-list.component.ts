@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../../share/models/client.model';
 import { Router } from '@angular/router';
-import { Compte } from '../../../share/models/compte.model';
-import { FilterSearchPipe } from '../../../compte/pipe/filter-search.pipe';
+import { Compte } from '../../../share/models/compte.model';import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
+;
 
 
 @Component({
@@ -16,12 +16,15 @@ export class ClientListComponent implements OnInit {
   public clients:Client[];
   public client:Client;
   public searchClient:string= '';
+  public page:Page;
  
   constructor(private clientService:ClientService, private router:Router) { }
 
   ngOnInit() {
     this.clientService.getListClients();
-    this.clientService.clients.subscribe(clients => this.clients = clients);
+    this.clientService.clients.subscribe(clients => {
+      this.clients = clients
+    });
   }
 
   getClientDetails(client:Client){

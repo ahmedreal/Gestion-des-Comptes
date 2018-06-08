@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Profil } from '../models/profil.model';
+import { Profil } from '../share/models/profil.model';
 
 @Injectable()
 export class ProfilService {

@@ -3,6 +3,7 @@ import { ClientService } from '../../services/client.service';
 import { Client } from '../../../share/models/client.model';
 import { Router } from '@angular/router';
 import { Compte } from '../../../share/models/compte.model';
+import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 
 @Component({
   selector: 'app-client-detail',
@@ -16,6 +17,7 @@ public client:Client;
 public newCompte:string = '';
 public erreur:string;
 public isErreur:boolean= false;
+public p:Page;
 
   constructor(private clientService:ClientService, private router: Router) { }
 

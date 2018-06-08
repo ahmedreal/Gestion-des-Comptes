@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Profil } from '../share/models/profil.model';
-import { AuthentifficationService } from '../share/service/authentiffication.service';
-import { ProfilService } from '../share/service/profil.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { ProfilService } from './profil.service';
+import { AuthentifficationService } from '../login/authentiffication.service';
 
 @Component({
   selector: 'app-profil',

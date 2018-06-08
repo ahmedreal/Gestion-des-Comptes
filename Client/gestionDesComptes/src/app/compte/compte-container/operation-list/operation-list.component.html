@@ -1,17 +1,18 @@
 <div class="panel panel-primary">
   <div class="panel-heading">Liste des opérations</div>
-  <div class="panel-body autoScroll" style="height:200pt">
+  <div class="panel-body autoScroll" style="height:230pt">
     <table class="table table-striped">
       <tr>
         <th>Type Opération</th>
         <th>Date</th>
         <th>Montant</th>            
       </tr>
-        <tr *ngFor="let operation of operations" >
+        <tr *ngFor="let operation of operations | paginate:{itemsPerPage:5, currentPage:p, id:'operations-list'}" >
           <td>{{operation.discriminatorValue | typeOperation}} {{operation.details}}</td>
           <td>{{operation.dateOperation}}</td>
           <td>{{operation.montant}}</td>            
         </tr>
+        <pagination-controls  id='operations-list' *ngIf="operations && operations.length > 4" class="page-item" (pageChange)="p=$event"></pagination-controls>
     </table>
   </div>
 </div>

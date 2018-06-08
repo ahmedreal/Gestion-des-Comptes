@@ -2,12 +2,14 @@
 <div class="col-md-5">
   <div class="panel panel-primary">
     <div class="panel-heading">Liste des comptes</div>
-    <div class="panel-body">
+    <div class="panel-body autoScroll" style="height:160pt">
       <div *ngIf="!isAdmin">
-        <a *ngFor="let compte of comptes" class="list-group-item list-group-action" [routerLink]=[compte.codeCompte]
+        <a *ngFor="let compte of comptes | paginate:{itemsPerPage:3, currentPage:p, id:'compte-list'}" class="list-group-item list-group-action" [routerLink]=[compte.codeCompte]
         routerLinkActive="active">
           {{compte.codeCompte}}
         </a>
+        <br>
+        <pagination-controls id='compte-list' *ngIf="comptes && comptes.length > 3" class="page-item" (pageChange)="p=$event"></pagination-controls>
       </div>
       <div *ngIf="isAdmin">
         <form [formGroup]="getCompteForm" (ngSubmit)="chercherCompte()">

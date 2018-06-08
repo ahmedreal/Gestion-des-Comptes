@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OperationService } from '../../../share/service/operation.service';
 import { Operation } from '../../../share/models/operation.model';
 import { Compte } from '../../../share/models/compte.model';
+import { OperationService } from '../../operation.service';
+import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
 
 @Component({
   selector: 'app-operation-list',
@@ -11,6 +12,8 @@ import { Compte } from '../../../share/models/compte.model';
 export class OperationListComponent implements OnInit {
 
   public operations: Operation[];
+  public p:Page;
+
   constructor(private opService:OperationService) { }
 
   ngOnInit() {

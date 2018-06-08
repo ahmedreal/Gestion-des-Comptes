@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthentifficationService } from '../service/authentiffication.service';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { JwtToken } from '../models/JwtToken.model';
+import { AuthentifficationService } from '../../login/authentiffication.service';
 
 @Component({
   selector: 'app-header',
