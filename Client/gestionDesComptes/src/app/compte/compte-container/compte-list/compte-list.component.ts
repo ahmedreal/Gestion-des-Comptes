@@ -15,7 +15,7 @@ import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
   templateUrl: './compte-list.component.html',
   styleUrls: ['./compte-list.component.css']
 })
-export class CompteListComponent implements OnInit {
+export class CompteListComponent implements OnInit, OnDestroy {
 
   public profil: Profil;
   public username:string;
@@ -25,9 +25,13 @@ export class CompteListComponent implements OnInit {
   public listCodeComptes:string[];
   public erreur:string;
   public p:Page;
+  public sub1:Subscription;
+  public sub2:Subscription;
+  public sub3:Subscription;
+  public sub4:Subscription;
 
   constructor(private opService: OperationService, private router:Router, private auth:AuthentifficationService, private fb:FormBuilder) { 
-    this.auth.jwtToken.subscribe((res:JwtToken) =>{
+    this.sub1 = this.auth.jwtToken.subscribe((res:JwtToken) =>{
       this.isAdmin = res.isAdmin;
       this.username = res.username;
     });
@@ -45,11 +49,11 @@ export class CompteListComponent implements OnInit {
 
     this.erreur = null;
     this.opService.getListCodeComptes();
-    this.opService.listcodeComptes.subscribe(listCodeComptes => this.listCodeComptes = listCodeComptes);
+    this.sub2 = this.opService.listcodeComptes.subscribe(listCodeComptes => this.listCodeComptes = listCodeComptes);
   }
 
   getClientComptes(){
-    this.opService.getClientComptes(this.username).subscribe(comptes => {
+    this.sub3 = this.opService.getClientComptes(this.username).subscribe(comptes => {
       this.comptes=comptes;})
   }
 
@@ -57,7 +61,7 @@ export class CompteListComponent implements OnInit {
     let compteValid = this.listCodeComptes.includes(this.getCompteForm.get('code').value);
     if(this.getCompteForm.valid && compteValid){
       this.erreur = null;
-      this.opService.getCompte(this.getCompteForm.value.code).subscribe(compte => {
+      this.sub4 = this.opService.getCompte(this.getCompteForm.value.code).subscribe(compte => {
         this.router.navigate(['/compte',compte.codeCompte]);
       });
     }else{
@@ -66,5 +70,15 @@ export class CompteListComponent implements OnInit {
    
   }
 
+  ngOnDestroy(){
+  if(this.sub1)
+    this.sub1.unsubscribe;
+  if(this.sub2)
+    this.sub2.unsubscribe;
+  if(this.sub3)
+    this.sub3.unsubscribe;
+  if(this.sub4)
+    this.sub4.unsubscribe;
+  }
 
 }

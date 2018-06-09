@@ -19,6 +19,7 @@ export class OperationComponent implements OnInit, OnDestroy {
   public compte:Compte;
   public erreur:string;
   public sup:Subscription;
+
   @Input() listCodeComptes:string[];
 
   constructor(private fb:FormBuilder, private opService:OperationService) { }
@@ -61,7 +62,8 @@ export class OperationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.sup.unsubscribe;
+    if(this.sup)
+      this.sup.unsubscribe;
   }
 
 }

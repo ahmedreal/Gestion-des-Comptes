@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../../share/models/client.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from '@angular/compiler/src/core';
 import { SharedService } from '../../../share/service/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-new-client',
   templateUrl: './new-client.component.html',
   styleUrls: ['./new-client.component.css']
 })
-export class NewClientComponent implements OnInit {
+export class NewClientComponent implements OnInit, OnDestroy {
 
   public addForm:FormGroup;
   passwordConf:string;
   erreur:string;
   message:string;
   typeProfil:string;
+  public sub1:Subscription;
+  public sub2:Subscription;
+
   constructor(private fb:FormBuilder,private sharedService:SharedService, private clientService:ClientService, private router:Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -45,12 +49,12 @@ export class NewClientComponent implements OnInit {
       comptes: null
     };
     if(this.typeProfil ==='Client'){
-      this.clientService.addClient(newProfil).subscribe((client)=>{
+      this.sub1 = this.clientService.addClient(newProfil).subscribe((client)=>{
         this.clientService.getListClients();
         this.message="Client crée";
       });
     }else if(this.typeProfil ==='Administrateur'){
-      this.clientService.addAdmin(newProfil).subscribe((client)=>{
+      this.sub2 = this.clientService.addAdmin(newProfil).subscribe((client)=>{
         this.clientService.getListClients();
         this.message="Administrateur crée";
       });
@@ -72,6 +76,13 @@ export class NewClientComponent implements OnInit {
     }else{
       return false
     }
+  }
+
+  ngOnDestroy(){
+    if(this.sub1)
+      this.sub1.unsubscribe;
+    if(this.sub2)
+      this.sub2.unsubscribe;
   }
 
 }

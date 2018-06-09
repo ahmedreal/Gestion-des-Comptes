@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public loginForm: FormGroup;
   public mode:number = 0;
   public sub1: Subscription;
+  public sub2: Subscription;
   
   constructor(private fb: FormBuilder, private auth:AuthentifficationService, private router: Router) { }
 
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(){
       this.sub1 = this.auth.login(this.loginForm.value).subscribe(
       resp =>{  this.auth.saveToken(resp.headers.get('Authorization'));
-        this.auth.jwtToken.subscribe(jwtToken => {
+        this.sub2 = this.auth.jwtToken.subscribe(jwtToken => {
           if(jwtToken.isAdmin){
             this.router.navigate(['client']);
           }else{
@@ -43,7 +44,10 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    //this.sub1.unsubscribe();
+    if(this.sub1)
+     this.sub1.unsubscribe();
+    if(this.sub2)
+     this.sub2.unsubscribe();
   }
 
 }

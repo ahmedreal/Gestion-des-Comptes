@@ -13,17 +13,18 @@ import { AuthentifficationService } from '../login/authentiffication.service';
 export class ProfilComponent implements OnInit, OnDestroy {
 
   public profil: Profil; 
-  public sub: Subscription;
+  public sub1: Subscription;
+  public sub2:Subscription;
   public isEdit:string;
   public message:string;
 
   constructor(private auth: AuthentifficationService, private profilService:ProfilService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    this.auth.profil.subscribe(res =>{
+    this.sub1 = this.auth.profil.subscribe(res =>{
       this.profil = res;
     });
-    this.activatedRoute.queryParamMap.subscribe(params => { 
+    this.sub2 = this.activatedRoute.queryParamMap.subscribe(params => { 
       this.isEdit = params.get('isEdit')
       if(this.isEdit==='true'){
         this.message = "Profil edité";
@@ -39,6 +40,10 @@ export class ProfilComponent implements OnInit, OnDestroy {
    }
 
   ngOnDestroy(){
+  if(this.sub1)
+    this.sub1.unsubscribe;
+  if(this.sub2)
+    this.sub2.unsubscribe;
   }
 
 }

@@ -30,7 +30,7 @@
               <th>Solde</th>
               <th>Date de création</th>          
             </tr>
-            <tr *ngFor="let compte of client.comptes | paginate:{itemsPerPage:4, currentPage:p, id:'client-detail'}" (click)="detailsCompte(compte)">
+            <tr *ngFor="let compte of client.comptes | paginate:{itemsPerPage:4, currentPage:p, id:'client-detail'}" (click)="detailsCompte(compte)" routerLinkActive='active'>
               <td>{{compte.codeCompte}}</td>
               <td>{{compte.solde}}</td>
               <td>{{compte.dateCreation}}</td>       

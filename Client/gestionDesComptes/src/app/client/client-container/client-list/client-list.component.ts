@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ClientService } from '../../services/client.service';
 import { Client } from '../../../share/models/client.model';
 import { Router } from '@angular/router';
 import { Compte } from '../../../share/models/compte.model';import { Page } from 'ngx-pagination/dist/pagination-controls.directive';
+import { Subscription } from 'rxjs';
 ;
 
 
@@ -11,18 +12,19 @@ import { Compte } from '../../../share/models/compte.model';import { Page } from
   templateUrl: './client-list.component.html',
   styleUrls: ['./client-list.component.css']
 })
-export class ClientListComponent implements OnInit {
+export class ClientListComponent implements OnInit, OnDestroy {
 
   public clients:Client[];
   public client:Client;
   public searchClient:string= '';
   public page:Page;
+  public sub:Subscription;
  
   constructor(private clientService:ClientService, private router:Router) { }
 
   ngOnInit() {
     this.clientService.getListClients();
-    this.clientService.clients.subscribe(clients => {
+    this.sub = this.clientService.clients.subscribe(clients => {
       this.clients = clients
     });
   }
@@ -37,6 +39,11 @@ export class ClientListComponent implements OnInit {
 
   createClient(){
     this.router.navigate(['client/new'], { queryParams: { 'type': 'Client' } });
+  }
+
+  ngOnDestroy(){
+    if(this.sub)
+     this.sub.unsubscribe;
   }
 
 

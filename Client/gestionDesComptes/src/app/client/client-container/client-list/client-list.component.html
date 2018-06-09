@@ -14,7 +14,7 @@
               <th>Nom</th>
               <th>Username</th>            
             </tr>
-              <tr *ngFor="let client of clients | filterClient:searchClient | paginate:{itemsPerPage:5, currentPage:page, id:'client-list'}"  (click)='getClientDetails(client)' routerLinkActivate='active'>
+              <tr *ngFor="let client of clients | filterClient:searchClient | paginate:{itemsPerPage:5, currentPage:page, id:'client-list'}" (click)='getClientDetails(client)'>
                 <td>{{client.code}}</td>
                 <td>{{client.nom}}</td>
                 <td>{{client.username}}</td>            
