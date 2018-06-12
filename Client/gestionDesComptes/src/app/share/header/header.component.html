@@ -3,13 +3,13 @@
     <a class="navbar-brand" routerLink='/compte'>Banque</a>
     <ul class="nav navbar-nav mr-auto">
       <li>
-        <a routerLinkActive="active" routerLink='/client' *ngIf='isAuthenticated && isAdmin'>Clients</a>
+        <a routerLinkActive="active" routerLink='client' *ngIf='isAuthenticated && isAdmin'>Clients</a>
       </li>
       <li>
-        <a  routerLinkActive="active" routerLink='/compte' *ngIf='isAuthenticated'>Comptes</a>
+        <a  routerLinkActive="active" routerLink='compte' *ngIf='isAuthenticated'>Comptes</a>
       </li>
       <li>
-        <a  routerLinkActive="active" routerLink="/profil" *ngIf='isAuthenticated'>{{username}}</a>
+        <a  routerLinkActive="active" routerLink="profil" *ngIf='isAuthenticated'>{{username}}</a>
       </li>
       <li>
         <a (click)='logout()' *ngIf='isAuthenticated'>Se déconnecter</a>

@@ -5,14 +5,14 @@ import { ClientDetailComponent } from './client-container/client-detail/client-d
 import { NewClientComponent } from './client-container/new-client/new-client.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { ClientService } from './services/client.service';
-import { SharedModule } from '../share/shared.module';
 import { AuthenticateModule } from '../login/auth.module';
+import { SharedModule } from '../share/shared.module';
 
 @NgModule({
   imports: [
     ClientRoutingModule,
-    SharedModule,
-    AuthenticateModule
+    AuthenticateModule,
+    SharedModule
   ],
   declarations: [
     ClientListComponent,

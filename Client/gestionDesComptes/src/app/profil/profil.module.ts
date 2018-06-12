@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../share/shared.module';
 import { ProfilComponent } from './profil.component';
 import { EditProfilComponent } from './edit-profil/edit-profil.component';
 import { ProfilRoutingModule } from './profil-routing.module';
 import { ProfilService } from './profil.service';
+import { SharedModule } from '../share/shared.module';
 
 
 @NgModule({
   imports: [
-    SharedModule,
-    ProfilRoutingModule
+    ProfilRoutingModule,
+    SharedModule
   ],
   declarations: [
     ProfilComponent,
